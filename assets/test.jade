@@ -1,0 +1,33 @@
+!!! 5
+html
+  head
+    title Mini Angular
+    script(type='text/javascript', src='/mini-angular.js')
+  body
+    h1 The title: {{title}} (that was the title)
+    p
+      input(ng-bind='title')
+    p(title='TEST: {{title}}').
+      This p should have a title, hover me!
+    h2 {{article.title}}
+    p {{article.body}}
+    h2 Counter
+    p {{counter}}
+    script(type='text/javascript').
+      var body = document.querySelector('body');
+      var ang = new MiniAngular(body);
+      ang.root = {
+        title: 'Test title',
+        value: 'Test value',
+        counter: 0,
+        article: {}
+      };
+      setTimeout(function () {
+        ang.root.article = {
+          title: 'Article title',
+          body: 'Article body'
+        };
+      }, 2000);
+      setInterval(function () {
+        ang.root.counter += 1;
+      }, 1000);
